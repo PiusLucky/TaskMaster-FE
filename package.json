@@ -1,0 +1,39 @@
+{
+  "name": "taskmaster-fe",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.0.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "js-cookie": "^3.0.5",
+    "lucide-react": "^0.279.0",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-responsive": "^9.0.2",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.22.2"
+  },
+  "devDependencies": {
+    "@types/comma-number": "^2.1.0",
+    "@types/js-cookie": "^3.0.4",
+    "@types/lodash": "^4.14.199",
+    "@types/node": "latest",
+    "@types/react": "^18.2.23",
+    "@types/react-dom": "^18.2.8",
+    "autoprefixer": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "postcss": "latest",
+    "tailwindcss": "latest",
+    "typescript": "latest"
+  }
+}
