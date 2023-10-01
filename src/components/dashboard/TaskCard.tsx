@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Badge } from "../ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -14,6 +14,8 @@ import { TaskModel } from "../modals/TaskModal";
 import { cookieStorageManager } from "@/api";
 import { storageKeys } from "@/api/storageKeys";
 import DeleteModal from "../modals/DeleteModal";
+import { PriorityType } from "@/lib/enum";
+
 
 function TaskCard({
   task,
@@ -23,6 +25,7 @@ function TaskCard({
   rerenderParentComp: () => void;
 }) {
   const [isPopOverOpen, setIsPopOverOpen] = useState(false);
+
   const user = cookieStorageManager.getItem<UserData>(storageKeys.user);
 
   return (
@@ -69,13 +72,41 @@ function TaskCard({
           </p>
         </div>
 
-        <Badge
-          className={`bg-[#e9081533] hover:bg-[#e9081533] text-[#FD0404] h-[1.437rem] !w-[150px] flex justify-center`}
-        >
-          <span className="text-[0.625rem]">
-            {capitalizeFirstLetter(task.priority)} priority
-          </span>
-        </Badge>
+        {task.priority === PriorityType.High ? (
+          <Badge
+            className={`bg-[#e9081533] hover:bg-[#e9081533] text-[#FD0404] h-[1.437rem] !w-[150px] flex justify-center`}
+          >
+            <span className="text-[0.625rem]">
+              {capitalizeFirstLetter(task.priority)} priority
+            </span>
+          </Badge>
+        ) : (
+          ""
+        )}
+
+        {task.priority === PriorityType.Low ? (
+          <Badge
+            className={`bg-[#27D17F] hover:bg-[#27D17F] text-[#fff] h-[1.437rem] !w-[150px] flex justify-center`}
+          >
+            <span className="text-[0.625rem]">
+              {capitalizeFirstLetter(task.priority)} priority
+            </span>
+          </Badge>
+        ) : (
+          ""
+        )}
+
+        {task.priority === PriorityType.Medium ? (
+          <Badge
+            className={`bg-[#ffa50033] hover:bg-[#ffa50033] text-black h-[1.437rem] !w-[150px] flex justify-center`}
+          >
+            <span className="text-[0.625rem]">
+              {capitalizeFirstLetter(task.priority)} priority
+            </span>
+          </Badge>
+        ) : (
+          ""
+        )}
 
         <Avatar className="w-[1.5rem] h-[1.5rem]">
           <AvatarFallback className="text-[.8rem]">
