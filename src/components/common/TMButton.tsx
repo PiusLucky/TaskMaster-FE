@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { Button } from '../ui/button';
 import { Loader2 } from 'lucide-react';
 
-type MintButtonProps = {
+type TMButtonProps = {
   text: string;
   isLoading?: boolean;
   action?: () => void;
@@ -16,7 +16,7 @@ type MintButtonProps = {
   iconComponent?: React.ReactElement;
 };
 
-const MintButton = forwardRef<HTMLButtonElement, MintButtonProps>(
+const TMButton = forwardRef<HTMLButtonElement, TMButtonProps>(
   (
     {
       text,
@@ -74,6 +74,6 @@ const MintButton = forwardRef<HTMLButtonElement, MintButtonProps>(
 );
 
 // Assign a display name to your component
-MintButton.displayName = 'TaskMasterButton';
+TMButton.displayName = 'TaskMasterButton';
 
-export default MintButton;
+export default TMButton;

@@ -1,0 +1,4 @@
+const COOKIE_EXPIRY_TIME = 15 / 1440; //10 minutes
+const STATUS_OK = 200;
+
+export { COOKIE_EXPIRY_TIME, STATUS_OK };

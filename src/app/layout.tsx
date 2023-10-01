@@ -1,6 +1,9 @@
+import JotaiProviders from '@/providers/jotai'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
+import { SuccessModal } from '@/components/modals/SuccessModal'
+import { ErrorModal } from '@/components/modals/ErrorModal'
 
 const poppins = Poppins({
   weight: ['400', '500', '700'],
@@ -21,7 +24,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={poppins.className}>{children}</body>
+      <JotaiProviders>
+        <body className={poppins.className}>{children}</body>
+        <SuccessModal />
+        <ErrorModal />
+      </JotaiProviders>
     </html>
   )
 }
