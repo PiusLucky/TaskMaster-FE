@@ -17,7 +17,7 @@ import { apiClient, cookieStorageManager } from "@/api";
 import { useSetAtom } from "jotai";
 import { ATOMS } from "@/api/atoms";
 import { STATUS_OK } from "@/lib/defaultConfig";
-
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 function NavbarDashboard() {
   const [position, setPosition] = React.useState("bottom");
@@ -42,7 +42,7 @@ function NavbarDashboard() {
   };
 
   return (
-    <div className="md:sticky md:top-0 md:pt-1 md:bg-white md:shadow-md z-20">
+    <div className="md:sticky md:top-0 md:pt-1 md:bg-white md:shadow-md z-20 ">
       {/* DESKTOP */}
       <div className="mt-[.4rem] hidden lg:block animate-in fade-in zoom-in">
         <div className="flex justify-between mx-[41px]">
@@ -51,7 +51,7 @@ function NavbarDashboard() {
               <img
                 src="/images/full_logo.png"
                 alt="logo"
-                className="mr-[53px] w-[7rem] "
+                className="mr-[53px]"
               />
             </Link>
           </div>
@@ -59,12 +59,14 @@ function NavbarDashboard() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <div className="flex items-center gap-[0.75rem] select-none hover:cursor-pointer">
-                <img src="/svgs_dashboard/user.svg" alt="user icon" />
-                <span>My Account </span>
-                <img
-                  src="/svgs_dashboard/chevron_down.svg"
-                  alt="chevron down icon"
-                />
+                <p>Lucky Pius O.</p>
+                <Avatar>
+                  <AvatarImage
+                    src="https://github.com/shadcn.png"
+                    alt="@shadcn"
+                  />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="mt-4 w-[13rem]">
@@ -75,7 +77,10 @@ function NavbarDashboard() {
                 onValueChange={setPosition}
               >
                 <DropdownMenuRadioItem value="logout" onClick={handleLogout}>
-                  Logout
+                  <div className="text-danger flex gap-2 cursor-pointer">
+                    <img src="/svgs/logout.svg" alt="logout icon" />
+                    <p className="text-[0.875rem]">Logout</p>
+                  </div>
                 </DropdownMenuRadioItem>
               </DropdownMenuRadioGroup>
             </DropdownMenuContent>
@@ -85,24 +90,24 @@ function NavbarDashboard() {
       </div>
       {/* MOBILE */}
       <div
-        className={` block lg:hidden animate-in fade-in zoom-in  ${
-          menu ? " bg-primary py-2" : "mt-[.2rem]"
+        className={` block lg:hidden animate-in fade-in zoom-in shadow-lg   ${
+          menu ? " bg-white py-2" : "mt-[.2rem]"
         } `}
       >
         <div className="flex justify-between mx-[10px]">
-          <div className="flex gap-[50px] text-[16px] items-center select-none">
+          <div className="flex gap-[50px] text-[16px] items-center select-none pt-2 pb-2">
             <Link href="/dashboard/wallets">
               <img
-                src={`${menu ? "/svgs/logo_white.svg" : "/svgs/logo.svg"}`}
+                src="/images/full_logo.png"
                 alt="logo"
-                className="w-[7rem]"
+                className="w-[10rem]"
               />
             </Link>
           </div>
           <div className="flex items-center gap-[40px]">
             {menu ? (
               <X
-                className="cursor-pointer animate-in fade-in zoom-in text-white"
+                className="cursor-pointer animate-in fade-in zoom-in text-black"
                 onClick={toggleMenu}
               />
             ) : (
@@ -119,8 +124,8 @@ function NavbarDashboard() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <div className="flex items-center gap-[0.75rem] select-none hover:cursor-pointer">
-                    <span className="text-white">My Account </span>
-                    <ChevronDown color="#fff" />
+                    <span className="text-black">My Account </span>
+                    <ChevronDown color="#000" />
                   </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="mt-4 w-[13rem]">

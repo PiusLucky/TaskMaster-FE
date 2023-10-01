@@ -109,9 +109,10 @@ class ApiClient {
   }
 
   private handleAxiosError(error: AxiosError, setError: any) {
-    console.log(error.response);
-    const tokenExpired = "Token has expired";
-    const errorMessage = error.response?.data?.meta?.message;
+    const noTokenDetected =
+      error.response?.data?.msg === "Missing Authorization Header";
+    const errorMessage =
+      error.response?.data?.meta?.message || "Missing Authorization Header";
     const statusCode = error.response?.data?.meta?.statusCode;
 
     setError(() => ({
@@ -121,9 +122,9 @@ class ApiClient {
     }));
 
     setTimeout(() => {
-      if (statusCode === 499 || errorMessage === tokenExpired) {
+      if (noTokenDetected) {
         if (typeof window !== "undefined") {
-          window.location.href = "/login";
+          window.location.href = "/auth/login";
         }
       }
     }, 500);

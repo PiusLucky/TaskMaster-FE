@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as z from "zod";
 import { Eye, EyeOff } from "lucide-react";
 import {
@@ -22,7 +22,7 @@ import { ATOMS } from "@/api/atoms";
 import { storageKeys } from "@/api/storageKeys";
 import { useRouter } from "next/navigation";
 import apiResources from "@/api/resources";
-import { ILogin, ILoginData, IMeta, IUserInfo } from "@/types/global-types";
+import { ILoginData, IMeta, IUserInfo } from "@/types/global-types";
 import TMButton from "../common/TMButton";
 
 const formSchema = z.object({
@@ -94,8 +94,12 @@ function LoginForm() {
     <div className="rounded-[2.5rem] shadow-lg p-[2.75rem] bg-white">
       <section className="mb-[1.81rem]">
         <div className="flex justify-between flex-col gap-2 md:flex-row">
-          <div className="flex w-[200px] items-center gap-[0.63rem]">
-            <img src="/images/logo.png" alt="logo" />
+          <div className="flex w-[200px] items-center gap-[0.63rem] -ml-2">
+            <img
+              src="/images/logo.png"
+              alt="logo"
+              className="w-[3rem] md:w-[4rem]"
+            />
           </div>
           <div className="text-[#8D8D8D]">
             <p>No Account ?</p>
