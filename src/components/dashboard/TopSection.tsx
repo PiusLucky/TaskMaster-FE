@@ -4,12 +4,22 @@ import React from "react";
 import { Input } from "@/components/ui/input";
 import TMButton from "../common/TMButton";
 import { TaskModel } from "../modals/TaskModal";
+import { debounce } from "lodash";
+import { SEARCH_EVENT, TMEmitter } from "@/lib/events";
 
 function TopSection({
   rerenderParentComp,
 }: {
   rerenderParentComp: () => void;
 }) {
+  const debouncedSearch = debounce((value) => {
+    TMEmitter.emit(SEARCH_EVENT, value);
+  }, 1000);
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    debouncedSearch(e.target.value);
+  };
+
   return (
     <div className="flex justify-between flex-col  gap-4 md:flex-row">
       <div className="flex-grow max-w-[500px]">
@@ -18,6 +28,7 @@ function TopSection({
             <Input
               className="pl-[2.5rem] focus:!ring-primary h-[3.125rem]"
               placeholder="Search"
+              onChange={onChange}
             />
             <div className="cursor-pointer absolute w-[2.25rem] h-[1.25rem] rounded-[0.5rem] flex justify-center items-center font-bold top-[.8rem] left-1">
               <img src="/svgs/search.svg" alt="search icon" />

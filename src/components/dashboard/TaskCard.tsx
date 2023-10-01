@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Badge } from "../ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   Popover,
   PopoverContent,
@@ -11,12 +11,8 @@ import {
 import { Task, UserData } from "@/types/global-types";
 import { capitalizeFirstLetter, getFirstLetters } from "@/lib/utils";
 import { TaskModel } from "../modals/TaskModal";
-import { apiClient, cookieStorageManager } from "@/api";
+import { cookieStorageManager } from "@/api";
 import { storageKeys } from "@/api/storageKeys";
-import apiResources from "@/api/resources";
-import { useSetAtom } from "jotai";
-import { ATOMS } from "@/api/atoms";
-import { STATUS_OK } from "@/lib/defaultConfig";
 import DeleteModal from "../modals/DeleteModal";
 
 function TaskCard({
@@ -27,8 +23,6 @@ function TaskCard({
   rerenderParentComp: () => void;
 }) {
   const [isPopOverOpen, setIsPopOverOpen] = useState(false);
-  const setError = useSetAtom(ATOMS.axiosError);
-  const setSuccess = useSetAtom(ATOMS.axiosSuccess);
   const user = cookieStorageManager.getItem<UserData>(storageKeys.user);
 
   return (
@@ -76,7 +70,7 @@ function TaskCard({
         </div>
 
         <Badge
-          className={`bg-[#e9081533] hover:bg-[#e9081533] text-[#FD0404] h-[1.437rem] !w-[150px]`}
+          className={`bg-[#e9081533] hover:bg-[#e9081533] text-[#FD0404] h-[1.437rem] !w-[150px] flex justify-center`}
         >
           <span className="text-[0.625rem]">
             {capitalizeFirstLetter(task.priority)} priority

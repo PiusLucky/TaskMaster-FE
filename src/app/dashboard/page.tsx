@@ -9,6 +9,7 @@ import TaskCard from "@/components/dashboard/TaskCard";
 import TopSection from "@/components/dashboard/TopSection";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
+import { SEARCH_EVENT, TMEmitter } from "@/lib/events";
 import { ITaskList } from "@/types/global-types";
 import { useSetAtom } from "jotai";
 import React, { useEffect, useState } from "react";
@@ -28,6 +29,16 @@ function Dashboard() {
     setTasks(data);
   };
 
+  const handleSearch = async (searchValue: string) => {
+    const data = await apiClient.get<ITaskList>(
+      apiResources.task,
+      `/tasks?search=${searchValue}`,
+      setError
+    );
+
+    setTasks(data);
+  };
+
   const handleInitialCall = async () => {
     const data = await apiClient.get<ITaskList>(
       apiResources.task,
@@ -39,6 +50,15 @@ function Dashboard() {
   };
 
   useEffect(() => {
+    //Register the event listener
+    TMEmitter.on(SEARCH_EVENT, async (searchValue) => {
+      console.log(
+        "🚀 ~ file: page.tsx:55 ~ TMEmitter.on ~ searchValue:",
+        searchValue
+      );
+      await handleSearch(searchValue as string);
+    });
+
     async function fetch() {
       await handleInitialCall();
     }
