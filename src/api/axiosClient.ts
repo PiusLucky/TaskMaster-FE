@@ -109,15 +109,20 @@ class ApiClient {
   }
 
   private handleAxiosError(error: AxiosError, setError: any) {
+    console.log(error.response);
     const noTokenDetected =
       error.response?.data?.msg === "Missing Authorization Header";
-    const errorMessage =
-      error.response?.data?.meta?.message || "Missing Authorization Header";
-    const statusCode = error.response?.data?.meta?.statusCode;
+    const errorMessage = error.response?.data?.meta?.message;
+
+    const statusCode = noTokenDetected
+      ? 499
+      : error.response?.data?.meta?.statusCode;
 
     setError(() => ({
       statusCode: statusCode ? statusCode : 500,
-      errorMessage: errorMessage ? errorMessage : "Internal Server error",
+      errorMessage: noTokenDetected
+        ? "Token Expired. Kindly login again"
+        : errorMessage,
       errorOpenState: true,
     }));
 
@@ -127,7 +132,7 @@ class ApiClient {
           window.location.href = "/auth/login";
         }
       }
-    }, 500);
+    }, 1000);
   }
 
   private handleAxiosSuccess(data: any, setSuccess: any) {

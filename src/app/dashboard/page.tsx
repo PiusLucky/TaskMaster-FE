@@ -52,10 +52,6 @@ function Dashboard() {
   useEffect(() => {
     //Register the event listener
     TMEmitter.on(SEARCH_EVENT, async (searchValue) => {
-      console.log(
-        "🚀 ~ file: page.tsx:55 ~ TMEmitter.on ~ searchValue:",
-        searchValue
-      );
       await handleSearch(searchValue as string);
     });
 

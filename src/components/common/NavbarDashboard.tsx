@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { AlignCenter, ChevronDown, X } from "lucide-react";
 import {
@@ -11,16 +11,24 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { apiClient, cookieStorageManager } from "@/api";
 import { useSetAtom } from "jotai";
 import { ATOMS } from "@/api/atoms";
 import { STATUS_OK } from "@/lib/defaultConfig";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { UserData } from "@/types/global-types";
+import { storageKeys } from "@/api/storageKeys";
+import apiResources from "@/api/resources";
+import { capitalizeFirstLetter, getFirstLetters } from "@/lib/utils";
 
 function NavbarDashboard() {
+  const user = cookieStorageManager.getItem<UserData>(storageKeys.user);
+
   const [position, setPosition] = React.useState("bottom");
+  const [loadedUsername, setLoadedUsername] = React.useState<string | null>(
+    null
+  );
   const setError = useSetAtom(ATOMS.axiosError);
   const router = useRouter();
   const [menu, setMenu] = useState(false);
@@ -30,16 +38,25 @@ function NavbarDashboard() {
 
   const handleLogout = async () => {
     try {
-      const { meta } = await apiClient.post("/user", "/logout", {}, setError);
+      const { meta } = await apiClient.post(
+        apiResources.user,
+        "/users/logout",
+        {},
+        setError
+      );
 
       if (meta.statusCode === STATUS_OK) {
         setTimeout(() => {
-          router.push("/", { scroll: false });
+          router.push("/auth/login", { scroll: false });
           cookieStorageManager.clearAll();
         }, 500);
       }
     } catch (error) {}
   };
+
+  useEffect(() => {
+    setLoadedUsername(user?.full_name || "");
+  }, []);
 
   return (
     <div className="md:sticky md:top-0 md:pt-1 md:bg-white md:shadow-md z-20 ">
@@ -47,25 +64,17 @@ function NavbarDashboard() {
       <div className="mt-[.4rem] hidden lg:block animate-in fade-in zoom-in">
         <div className="flex justify-between mx-[41px]">
           <div className="flex gap-[50px] text-[16px] items-center select-none">
-            <Link href="/dashboard/wallets">
-              <img
-                src="/images/full_logo.png"
-                alt="logo"
-                className="mr-[53px]"
-              />
-            </Link>
+            <img src="/images/full_logo.png" alt="logo" className="mr-[53px]" />
           </div>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <div className="flex items-center gap-[0.75rem] select-none hover:cursor-pointer">
-                <p>Lucky Pius O.</p>
+                <p>{capitalizeFirstLetter(loadedUsername || "")}</p>
                 <Avatar>
-                  <AvatarImage
-                    src="https://github.com/shadcn.png"
-                    alt="@shadcn"
-                  />
-                  <AvatarFallback>CN</AvatarFallback>
+                  <AvatarFallback>
+                    {getFirstLetters(loadedUsername || "TM")}
+                  </AvatarFallback>
                 </Avatar>
               </div>
             </DropdownMenuTrigger>
@@ -96,13 +105,7 @@ function NavbarDashboard() {
       >
         <div className="flex justify-between mx-[10px]">
           <div className="flex gap-[50px] text-[16px] items-center select-none pt-2 pb-2">
-            <Link href="/dashboard/wallets">
-              <img
-                src="/images/full_logo.png"
-                alt="logo"
-                className="w-[10rem]"
-              />
-            </Link>
+            <img src="/images/full_logo.png" alt="logo" className="w-[10rem]" />
           </div>
           <div className="flex items-center gap-[40px]">
             {menu ? (
