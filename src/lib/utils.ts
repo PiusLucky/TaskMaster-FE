@@ -44,3 +44,10 @@ export function ellipisifyString(input: string, maxLength: number): string {
 
   return `${startPart}${endPart}...`;
 }
+
+export const objectToUri = (obj: { [key: string]: any }): string => {
+  const uriString = Object.keys(obj)
+    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`)
+    .join('&');
+  return uriString;
+};

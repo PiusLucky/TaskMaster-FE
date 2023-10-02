@@ -6,7 +6,6 @@ import { useSetAtom } from "jotai";
 import { ATOMS } from "@/api/atoms";
 import TMButton from "../common/TMButton";
 import * as z from "zod";
-import { Textarea } from "@/components/ui/textarea";
 
 import {
   Form,
@@ -25,14 +24,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CategoryType, PriorityType } from "@/lib/enum";
 
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, objectToUri } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -40,7 +38,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Task } from "@/types/global-types";
+import { ITaskList } from "@/types/global-types";
+import { TMEmitter } from "@/lib/eventEmitter";
+import { FILTER_EVENT } from "@/lib/events";
 
 function formatDate(inputDateString: string) {
   const inputDate = new Date(inputDateString);
@@ -55,42 +55,17 @@ function formatDate(inputDateString: string) {
 }
 
 const formSchema = z.object({
-  title: z
-    .string()
-    .min(5, {
-      message: "Title must be at least 5 characters",
-    })
-    .max(255, {
-      message: "Title must be at most 255 characters",
-    }),
-  description: z.string().min(5, {
-    message: "Description must be at least 10 characters",
-  }),
-  category: z.string().min(1, {
-    message: "Category is required",
-  }),
-  priority: z.string().min(1, {
-    message: "Priority is required",
-  }),
-  dueDate: z.date({
-    required_error: "Due date is required.",
-  }),
+  category: z.string().optional(),
+  priority: z.string().optional(),
+  dueDate: z.date().optional(),
 });
 
-export function TaskModel({
-  rerenderParentComp,
-  isCreate,
-  task,
-}: {
-  rerenderParentComp: () => void;
-  isCreate: boolean;
-  task?: Task;
-}) {
+//Function starts here...
+export function FilterTaskModal() {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [actionButtonLoading, setActionButtonLoading] = useState(false);
   const setError = useSetAtom(ATOMS.axiosError);
-  const setSuccess = useSetAtom(ATOMS.axiosSuccess);
   const toggleOpenModal = () => {
     setOpen(!open);
   };
@@ -98,55 +73,38 @@ export function TaskModel({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: task?.title || "",
-      description: task?.description || "",
-      category: task?.category || "",
-      priority: task?.priority || "",
-      dueDate: task?.dueDate ? new Date(task?.dueDate) : new Date(),
+      category: "",
+      priority: "",
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setActionButtonLoading(true);
     try {
-      const { title, description, category, priority, dueDate } = values;
+      const { category, priority, dueDate } = values;
 
-      if (isCreate) {
-        const { data } = await apiClient.post(
-          apiResources.task,
-          "/tasks",
-          {
-            title,
-            description,
-            category,
-            priority,
-            dueDate: formatDate(dueDate.toString()),
-          },
-          setError,
-          setSuccess
-        );
+      const uriQuery = {
+        ...(category && {
+          category: category ? category : undefined,
+        }),
+        ...(priority && {
+          priority: priority ? priority : undefined,
+        }),
 
-        if (data) {
-          postActionCleanup();
-        }
-      } else {
-        const { data } = await apiClient.put(
-          apiResources.task,
-          `/tasks/${task?.id}`,
-          {
-            title,
-            description,
-            category,
-            priority,
-            dueDate: formatDate(dueDate.toString()),
-          },
-          setError,
-          setSuccess
-        );
+        ...(dueDate && {
+          dueDate: dueDate ? formatDate(dueDate?.toString()) : undefined,
+        }),
+      };
 
-        if (data) {
-          postActionCleanup();
-        }
+      const taskList = await apiClient.get<ITaskList>(
+        apiResources.task,
+        `/tasks?${objectToUri(uriQuery)}`,
+        setError
+      );
+
+      if (taskList) {
+        TMEmitter.emit(FILTER_EVENT, { taskList });
+        postActionCleanup();
       }
 
       setActionButtonLoading(false);
@@ -156,9 +114,6 @@ export function TaskModel({
   }
 
   const postActionCleanup = () => {
-    // Refetch/Refresh parent component
-    rerenderParentComp();
-
     //Close modal
     toggleOpenModal();
 
@@ -169,26 +124,17 @@ export function TaskModel({
   return (
     <Dialog open={open} onOpenChange={() => toggleOpenModal()}>
       <DialogTrigger asChild>
-        {isCreate ? (
-          <TMButton
-            text={"Add New Task"}
-            classes="w-[9.125rem] shadow-none !h-[3.37rem] rounded-[0.625rem]"
-            action={() => toggleOpenModal()}
-          />
-        ) : (
-          <div
-            className="flex gap-[0.4rem] cursor-pointer"
-            onClick={() => toggleOpenModal()}
-          >
-            <img src="/svgs/pencil.svg" alt="Pencil icon" />
-            <p>Edit</p>
-          </div>
-        )}
+        <TMButton
+          text={"Filter"}
+          iconRoute="/svgs/filter.svg"
+          classes="w-[8.06rem] shadow-none !h-[3.37rem] rounded-[0.625rem] bg-white border border-[#000] text-[#000] hover:bg-white"
+          action={() => toggleOpenModal()}
+        />
       </DialogTrigger>
       <DialogContent className="sm:max-w-[60rem] max-h-[500px] md:max-h-full overflow-y-auto pt-8">
         <div>
           <p className="text-[#333] text-[1rem] font-[600] mb-[1.2rem]">
-            {isCreate ? "Create" : "Update"} New Task
+            Filter Tasks
           </p>
           <section>
             <Form {...form}>
@@ -196,27 +142,6 @@ export function TaskModel({
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-8"
               >
-                {/* Title */}
-                <FormField
-                  control={form.control}
-                  name="title"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Title</FormLabel>
-                      <FormControl className="relative">
-                        <div>
-                          <Input
-                            placeholder="Enter Title"
-                            {...field}
-                            className=" focus:!ring-primary h-[3.125rem]"
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
                 {/* Category */}
                 <FormField
                   control={form.control}
@@ -335,12 +260,6 @@ export function TaskModel({
                                   field.onChange(e);
                                   setIsCalendarOpen(false);
                                 }}
-                                disabled={(date) =>
-                                  date <=
-                                  new Date(
-                                    new Date().setDate(new Date().getDate() - 1)
-                                  )
-                                }
                                 initialFocus
                               />
                             </PopoverContent>
@@ -352,31 +271,8 @@ export function TaskModel({
                   </div>
                 </div>
 
-                {/* Description */}
-                <div>
-                  <FormField
-                    control={form.control}
-                    name="description"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Description</FormLabel>
-                        <FormControl>
-                          <div>
-                            <Textarea
-                              {...field}
-                              placeholder="Enter task description"
-                              className="focus:!ring-primary"
-                            />
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
                 <TMButton
-                  text={isCreate ? "Create Task" : "Update Task"}
+                  text={"Apply filter"}
                   isSubmitable
                   width="w-full"
                   isLoading={actionButtonLoading}

@@ -9,7 +9,8 @@ import TaskCard from "@/components/dashboard/TaskCard";
 import TopSection from "@/components/dashboard/TopSection";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
-import { SEARCH_EVENT, TMEmitter } from "@/lib/events";
+import { TMEmitter } from "@/lib/eventEmitter";
+import { FILTER_EVENT, SEARCH_EVENT } from "@/lib/events";
 import { ITaskList } from "@/types/global-types";
 import { useSetAtom } from "jotai";
 import React, { useEffect, useState } from "react";
@@ -39,6 +40,10 @@ function Dashboard() {
     setTasks(data);
   };
 
+  const handleFilter = async (task: ITaskList) => {
+    setTasks(task);
+  };
+
   const handleInitialCall = async () => {
     const data = await apiClient.get<ITaskList>(
       apiResources.task,
@@ -53,6 +58,10 @@ function Dashboard() {
     //Register the event listener
     TMEmitter.on(SEARCH_EVENT, async (searchValue) => {
       await handleSearch(searchValue as string);
+    });
+
+    TMEmitter.on(FILTER_EVENT, async (data: any) => {
+      await handleFilter(data?.taskList as ITaskList);
     });
 
     async function fetch() {
