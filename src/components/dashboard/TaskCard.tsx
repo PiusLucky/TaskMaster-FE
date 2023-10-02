@@ -9,7 +9,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Task, UserData } from "@/types/global-types";
-import { capitalizeFirstLetter, getFirstLetters } from "@/lib/utils";
+import { capitalizeFirstLetter, ellipisifyString, getFirstLetters } from "@/lib/utils";
 import { TaskModel } from "../modals/TaskModal";
 import { cookieStorageManager } from "@/api";
 import { storageKeys } from "@/api/storageKeys";
@@ -62,8 +62,8 @@ function TaskCard({
           </Popover>
         </div>
       </div>
-      <div className="mt-[0.81rem] pr-2">{task.title}</div>
-      <div className="mt-[0.81rem] pr-2 text-gray-500">{task.description}</div>
+      <div className="mt-[0.81rem] pr-2">{ellipisifyString(task.title, 100)}</div>
+      <div className="mt-[0.81rem] pr-2 text-gray-500">{ellipisifyString(task.description, 300)}</div>
       <div className="flex gap-[2.5rem] mt-[0.81rem]">
         <div className="flex gap-2 items-center">
           <img src="/svgs/calendar.svg" alt="calendar icon" className="w-4" />

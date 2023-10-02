@@ -42,5 +42,5 @@ export function ellipisifyString(input: string, maxLength: number): string {
   const startPart = input.slice(0, startLength);
   const endPart = input.slice(input.length - endLength);
 
-  return `${startPart}***${endPart}`;
+  return `${startPart}${endPart}...`;
 }

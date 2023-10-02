@@ -22,7 +22,7 @@ import { ATOMS } from "@/api/atoms";
 import { storageKeys } from "@/api/storageKeys";
 import { useRouter } from "next/navigation";
 import apiResources from "@/api/resources";
-import { ILoginData, IMeta, IUserInfo } from "@/types/global-types";
+import { ILoginData, IUserInfo } from "@/types/global-types";
 import TMButton from "../common/TMButton";
 
 const formSchema = z.object({
@@ -56,7 +56,7 @@ function LoginForm() {
     setLoading(true);
     try {
       cookieStorageManager.clearAll();
-      const { meta, data } = await apiClient.post(
+      const { data } = await apiClient.post(
         apiResources.user,
         "/users/login",
         {
@@ -66,13 +66,13 @@ function LoginForm() {
         setError
       );
 
-      await afterLoginUpdate(meta, data);
+      await afterLoginUpdate(data);
     } catch (err) {
       setLoading(false);
     }
   }
 
-  const afterLoginUpdate = async (meta: IMeta, data: ILoginData) => {
+  const afterLoginUpdate = async (data: ILoginData) => {
     cookieStorageManager.addOrUpdateItem(storageKeys.token, data.access_token);
 
     const userInfo = await apiClient.get<IUserInfo>(
