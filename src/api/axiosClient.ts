@@ -108,7 +108,7 @@ class ApiClient {
     }
   }
 
-  private handleAxiosError(error: AxiosError, setError: any) {
+  private handleAxiosError(error: any, setError: any) {
     const noTokenDetected =
       error.response?.data?.msg === "Missing Authorization Header";
     const errorMessage = error.response?.data?.meta?.message;
