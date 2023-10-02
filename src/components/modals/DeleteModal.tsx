@@ -39,7 +39,7 @@ function DeleteModal({
         apiResources.task,
         `/tasks/${taskId}`,
         setError,
-        setSuccess
+        setSuccess,
       );
 
       if (statusCode === STATUS_OK) {

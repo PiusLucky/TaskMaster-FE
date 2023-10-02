@@ -1,13 +1,13 @@
-import { COOKIE_EXPIRY_TIME } from '@/lib/defaultConfig';
-import Cookies from 'js-cookie';
-import { storageKeys } from './storageKeys';
+import { COOKIE_EXPIRY_TIME } from "@/lib/defaultConfig";
+import Cookies from "js-cookie";
+import { storageKeys } from "./storageKeys";
 
 class CookieStorageManager {
   // Add an item to cookie
   addOrUpdateItem<T>(key: string, value: T): void {
     try {
-      let formattedValue = '';
-      if (typeof value === 'string') {
+      let formattedValue = "";
+      if (typeof value === "string") {
         formattedValue = value;
       } else {
         formattedValue = JSON.stringify(value);
@@ -16,7 +16,7 @@ class CookieStorageManager {
         expires: COOKIE_EXPIRY_TIME,
       });
     } catch (error) {
-      console.error('Error adding item to cookie:', error);
+      console.error("Error adding item to cookie:", error);
     }
   }
 
@@ -29,7 +29,7 @@ class CookieStorageManager {
       }
       return null;
     } catch (error) {
-      console.error('Error retrieving item from cookie:', error);
+      console.error("Error retrieving item from cookie:", error);
       return null;
     }
   }
@@ -39,7 +39,7 @@ class CookieStorageManager {
     try {
       Cookies.remove(key);
     } catch (error) {
-      console.error('Error removing item from cookie:', error);
+      console.error("Error removing item from cookie:", error);
     }
   }
 

@@ -27,7 +27,7 @@ function NavbarDashboard() {
 
   const [position, setPosition] = React.useState("bottom");
   const [loadedUsername, setLoadedUsername] = React.useState<string | null>(
-    null
+    null,
   );
   const setError = useSetAtom(ATOMS.axiosError);
   const router = useRouter();
@@ -42,7 +42,7 @@ function NavbarDashboard() {
         apiResources.user,
         "/users/logout",
         {},
-        setError
+        setError,
       );
 
       if (meta.statusCode === STATUS_OK) {
@@ -56,7 +56,7 @@ function NavbarDashboard() {
 
   useEffect(() => {
     setLoadedUsername(user?.full_name || "");
-  }, []);
+  }, [user?.full_name]);
 
   return (
     <div className="md:sticky md:top-0 md:pt-1 md:bg-white md:shadow-md z-20 ">

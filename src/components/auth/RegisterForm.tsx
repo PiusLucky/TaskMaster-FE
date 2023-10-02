@@ -81,7 +81,7 @@ function RegisterForm() {
           password,
         },
         setError,
-        setSuccess
+        setSuccess,
       );
 
       setTimeout(() => {
@@ -103,7 +103,11 @@ function RegisterForm() {
       <section className="mb-[2.5rem]">
         <div className="flex justify-between flex-col gap-2 md:flex-row">
           <div className="flex w-[200px] items-center gap-[0.63rem] -ml-2">
-            <img src="/images/logo.png" alt="logo" className="w-[3rem] md:w-[4rem]" />
+            <img
+              src="/images/logo.png"
+              alt="logo"
+              className="w-[3rem] md:w-[4rem]"
+            />
           </div>
           <div className="text-[#8D8D8D]">
             <p>Account already exist?</p>

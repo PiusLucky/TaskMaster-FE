@@ -56,7 +56,7 @@ const TMPagination = ({
             baseStyles,
             {
               hidden: currentPage === 1,
-            }
+            },
           )}`}
         />
       </div>
@@ -77,7 +77,7 @@ const TMPagination = ({
                 {
                   "!font-bold !text-[#249756] !bg-[#24975633]":
                     pageNumber === currentPage,
-                }
+                },
               )} `}
               onClick={() => onPageChange(pageNumber)}
             >
@@ -97,7 +97,7 @@ const TMPagination = ({
             baseStyles,
             {
               hidden: currentPage === lastPage,
-            }
+            },
           )}`}
         />
       </div>

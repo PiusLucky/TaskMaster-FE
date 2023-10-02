@@ -1,13 +1,12 @@
 const axiosErrorDefault = {
   statusCode: 0,
-  errorMessage: '',
+  errorMessage: "",
   errorOpenState: false,
 };
 
 const axiosSuccessDefault = {
-  successMessage: '',
+  successMessage: "",
   successOpenState: false,
 };
-
 
 export { axiosErrorDefault, axiosSuccessDefault };

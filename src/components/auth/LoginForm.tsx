@@ -63,7 +63,7 @@ function LoginForm() {
           email,
           password,
         },
-        setError
+        setError,
       );
 
       await afterLoginUpdate(data);
@@ -78,7 +78,7 @@ function LoginForm() {
     const userInfo = await apiClient.get<IUserInfo>(
       apiResources.user,
       "/users",
-      setError
+      setError,
     );
     cookieStorageManager.addOrUpdateItem(storageKeys.user, userInfo.data);
 

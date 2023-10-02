@@ -1,8 +1,8 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
- 
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export function capitalizeFirstLetter(inputString: string): string {
@@ -17,8 +17,10 @@ export function capitalizeFirstLetter(inputString: string): string {
 }
 
 export function getFirstLetters(inputString: string): string {
-  const words: string[] = inputString.split(' ');
-  const firstLetters: string = words.map((word) => word.charAt(0).toUpperCase()).join('')
+  const words: string[] = inputString.split(" ");
+  const firstLetters: string = words
+    .map((word) => word.charAt(0).toUpperCase())
+    .join("");
   return firstLetters;
 }
 
@@ -48,6 +50,6 @@ export function ellipisifyString(input: string, maxLength: number): string {
 export const objectToUri = (obj: { [key: string]: any }): string => {
   const uriString = Object.keys(obj)
     .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`)
-    .join('&');
+    .join("&");
   return uriString;
 };

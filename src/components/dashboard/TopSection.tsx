@@ -33,7 +33,7 @@ function TopSection({
     const taskList = await apiClient.get<ITaskList>(
       apiResources.task,
       `/tasks`,
-      setError
+      setError,
     );
 
     const taskObj = {

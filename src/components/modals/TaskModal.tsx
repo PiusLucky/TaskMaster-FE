@@ -46,10 +46,7 @@ function formatDate(inputDateString: string) {
   const inputDate = new Date(inputDateString);
   const year = inputDate.getFullYear();
   const month = (inputDate.getMonth() + 1).toString().padStart(2, "0"); // Adding 1 because months are 0-based
-  const day = inputDate
-    .getDate()
-    .toString()
-    .padStart(2, "0");
+  const day = inputDate.getDate().toString().padStart(2, "0");
 
   return `${year}-${month}-${day}`;
 }
@@ -123,7 +120,7 @@ export function TaskModel({
             dueDate: formatDate(dueDate.toString()),
           },
           setError,
-          setSuccess
+          setSuccess,
         );
 
         if (data) {
@@ -141,7 +138,7 @@ export function TaskModel({
             dueDate: formatDate(dueDate.toString()),
           },
           setError,
-          setSuccess
+          setSuccess,
         );
 
         if (data) {
@@ -312,7 +309,7 @@ export function TaskModel({
                                   variant={"outline"}
                                   className={cn(
                                     "pl-3 text-left font-normal",
-                                    !field.value && "text-muted-foreground"
+                                    !field.value && "text-muted-foreground",
                                   )}
                                 >
                                   {field.value ? (
@@ -338,7 +335,9 @@ export function TaskModel({
                                 disabled={(date) =>
                                   date <=
                                   new Date(
-                                    new Date().setDate(new Date().getDate() - 1)
+                                    new Date().setDate(
+                                      new Date().getDate() - 1,
+                                    ),
                                   )
                                 }
                                 initialFocus

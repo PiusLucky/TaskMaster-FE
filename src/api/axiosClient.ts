@@ -13,7 +13,7 @@ class ApiClient {
     });
 
     axiosClient.interceptors.request.use(
-      function(req: any) {
+      function (req: any) {
         const token = Cookies.get(storageKeys.token);
 
         if (token) {
@@ -21,9 +21,9 @@ class ApiClient {
         }
         return req;
       },
-      function(err) {
+      function (err) {
         return Promise.reject(err);
-      }
+      },
     );
 
     this.axiosClient = axiosClient;
@@ -33,7 +33,7 @@ class ApiClient {
   async get<T>(resource: string, endpoint: string, setError: any): Promise<T> {
     try {
       const response = await this.axiosClient.get(
-        `${this.baseUrl}${resource}${endpoint}`
+        `${this.baseUrl}${resource}${endpoint}`,
       );
       return response.data;
     } catch (error) {
@@ -46,12 +46,12 @@ class ApiClient {
     endpoint: string,
     data: any,
     setError: any,
-    setSuccess: any = null
+    setSuccess: any = null,
   ) {
     try {
       const response = await this.axiosClient.put(
         `${this.baseUrl}${resource}${endpoint}`,
-        data
+        data,
       );
 
       if (setSuccess) {
@@ -69,12 +69,12 @@ class ApiClient {
     endpoint: string,
     data: any,
     setError: any,
-    setSuccess: any = null
+    setSuccess: any = null,
   ) {
     try {
       const response = await this.axiosClient.post(
         `${this.baseUrl}${resource}${endpoint}`,
-        data
+        data,
       );
 
       if (setSuccess) {
@@ -91,11 +91,11 @@ class ApiClient {
     resource: string,
     endpoint: string,
     setError: any,
-    setSuccess: any
+    setSuccess: any,
   ) {
     try {
       const response = await this.axiosClient.delete(
-        `${this.baseUrl}${resource}${endpoint}`
+        `${this.baseUrl}${resource}${endpoint}`,
       );
 
       if (setSuccess) {

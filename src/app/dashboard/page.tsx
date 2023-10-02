@@ -13,7 +13,7 @@ import { TMEmitter } from "@/lib/eventEmitter";
 import { FILTER_EVENT, SEARCH_EVENT } from "@/lib/events";
 import { ITaskList } from "@/types/global-types";
 import { useSetAtom } from "jotai";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 function Dashboard() {
   const [loading, setLoading] = useState(true);
@@ -24,35 +24,38 @@ function Dashboard() {
     const data = await apiClient.get<ITaskList>(
       apiResources.task,
       `/tasks?page=${page}`,
-      setError
+      setError,
     );
 
     setTasks(data);
   };
 
-  const handleSearch = async (searchValue: string) => {
-    const data = await apiClient.get<ITaskList>(
-      apiResources.task,
-      `/tasks?search=${searchValue}`,
-      setError
-    );
+  const handleSearch = useCallback(
+    async (searchValue: string) => {
+      const data = await apiClient.get<ITaskList>(
+        apiResources.task,
+        `/tasks?search=${searchValue}`,
+        setError,
+      );
 
-    setTasks(data);
-  };
+      setTasks(data);
+    },
+    [setError],
+  );
 
   const handleFilter = async (task: ITaskList) => {
     setTasks(task);
   };
 
-  const handleInitialCall = async () => {
+  const handleInitialCall = useCallback(async () => {
     const data = await apiClient.get<ITaskList>(
       apiResources.task,
       "/tasks",
-      setError
+      setError,
     );
     setTasks(data);
     setLoading(false);
-  };
+  }, [setError]);
 
   useEffect(() => {
     //Register the event listener
@@ -69,7 +72,7 @@ function Dashboard() {
     }
 
     fetch();
-  }, []);
+  }, [handleInitialCall, handleSearch]);
 
   return (
     <div className="pl-4 md:pl-[2.5rem] pr-1 md:pr-[2.5rem]">

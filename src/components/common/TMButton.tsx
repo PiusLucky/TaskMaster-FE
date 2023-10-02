@@ -33,7 +33,7 @@ const TMButton = forwardRef<HTMLButtonElement, TMButtonProps>(
       iconComponent,
       showTextBeforeIcon,
     },
-    ref
+    ref,
   ) => {
     const propWidth =
       width === "FULL_WIDTH" ? "w-full" : width ? width : "w-[245px]";
@@ -94,7 +94,7 @@ const TMButton = forwardRef<HTMLButtonElement, TMButtonProps>(
         {dataLoadingText}
       </Button>
     );
-  }
+  },
 );
 
 // Assign a display name to your component
