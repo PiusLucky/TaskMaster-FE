@@ -23,7 +23,7 @@ function TopSection({
   const setError = useSetAtom(ATOMS.axiosError);
   const debouncedSearch = debounce((value) => {
     TMEmitter.emit(SEARCH_EVENT, value);
-  }, 1000);
+  }, 300);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     debouncedSearch(e.target.value);
