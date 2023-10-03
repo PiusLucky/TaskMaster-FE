@@ -6,7 +6,7 @@
 
 TaskMaster Frontend is the client interfacing the TaskMaster project, responsible for user authentication and  managing tasks.
 
-## App Demo
+## Deployed Version
 `Frontend Server`: https://task-master-rgf1b5u8p-betacare.vercel.app/auth/login
 
 
@@ -20,8 +20,18 @@ Part2: https://www.loom.com/share/a85adb8742b64a8aa9c3d308b81a71b2
 
 
 ## Getting Started
+First, install your packages
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
 
-First, run the development server:
+Then, run the development server:
 
 ```bash
 npm run dev
