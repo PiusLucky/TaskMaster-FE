@@ -59,7 +59,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 
 ## Stack
-- Nextjs (web framework for React) - Typescript
+- Next.js 13 (web framework for React) - Typescript
 - Jotai (state management)
 - Shadcn (no-component library)
 - Js-cookie (cookie store, and cookie invalidation)
