@@ -1,3 +1,24 @@
+<p align="center">
+  <img src="https://github.com/PiusLucky/TaskMaster-FE/raw/main/public/images/logo.png" alt="TaskMaster Logo" width="100">
+</p>
+
+# TaskMaster Frontend
+
+TaskMaster Frontend is the client interfacing the TaskMaster project, responsible for user authentication and  managing tasks.
+
+## App Demo
+`Frontend Server`: https://task-master-rgf1b5u8p-betacare.vercel.app/auth/login
+
+
+## Figma
+https://www.figma.com/file/kXtgdchLHUdMYp42QqlPN1/Task-Management-App?type=design&node-id=0-1&mode=design
+
+## Video Demo
+Part1: https://www.loom.com/share/a9645406d88648209cfc2d0d82a678c0
+
+Part2: https://www.loom.com/share/a85adb8742b64a8aa9c3d308b81a71b2
+
+
 ## Getting Started
 
 First, run the development server:
@@ -12,23 +33,37 @@ pnpm dev
 bun dev
 ```
 
+## Run Test
+
+```bash
+npm run test
+# or
+yarn test
+# or
+pnpm test
+# or
+bun test
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Stack
+- Nextjs (web framework for React) - Typescript
+- Jotai (state management)
+- Shadcn (no-component library)
+- Js-cookie (cookie store)
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Create tasks with titles, descriptions, categories, priorities, and due dates.
+- Update and edit existing tasks.
+- Delete tasks when they are no longer needed.
+- Categorize tasks based on their purpose or category.
+- Set priorities to keep track of important tasks.
+- User authentication and authorization with JWT.
+- Token revocation and security measures.
+- Comprehensive task management.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Feel free to explore the backend and integrate it with the frontend to use TaskMaster's full functionality!
