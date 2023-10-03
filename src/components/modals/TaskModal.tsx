@@ -74,7 +74,7 @@ const formSchema = z.object({
   }),
 });
 
-export function TaskModel({
+export function TaskModal({
   rerenderParentComp,
   isCreate,
   task,
@@ -120,7 +120,7 @@ export function TaskModel({
             dueDate: formatDate(dueDate.toString()),
           },
           setError,
-          setSuccess,
+          setSuccess
         );
 
         if (data) {
@@ -138,7 +138,7 @@ export function TaskModel({
             dueDate: formatDate(dueDate.toString()),
           },
           setError,
-          setSuccess,
+          setSuccess
         );
 
         if (data) {
@@ -184,7 +184,10 @@ export function TaskModel({
       </DialogTrigger>
       <DialogContent className="sm:max-w-[60rem] max-h-[500px] md:max-h-full overflow-y-auto pt-8">
         <div>
-          <p className="text-[#333] text-[1rem] font-[600] mb-[1.2rem]">
+          <p
+            className="text-[#333] text-[1rem] font-[600] mb-[1.2rem]"
+            data-testid="title"
+          >
             {isCreate ? "Create" : "Update"} New Task
           </p>
           <section>
@@ -206,6 +209,7 @@ export function TaskModel({
                             placeholder="Enter Title"
                             {...field}
                             className=" focus:!ring-primary h-[3.125rem]"
+                            data-testid="title-input"
                           />
                         </div>
                       </FormControl>
@@ -225,6 +229,7 @@ export function TaskModel({
                         <Select
                           onValueChange={field.onChange}
                           defaultValue={field.value}
+                          data-testid="category"
                         >
                           <SelectTrigger className="focus:!ring-primary">
                             <SelectValue placeholder="Select Category" />
@@ -266,6 +271,7 @@ export function TaskModel({
                             <Select
                               onValueChange={field.onChange}
                               defaultValue={field.value}
+                              data-testid="priority"
                             >
                               <SelectTrigger className="focus:!ring-primary">
                                 <SelectValue placeholder="Select Priority" />
@@ -295,6 +301,7 @@ export function TaskModel({
                   <div className="flex-grow mt-2">
                     <FormField
                       control={form.control}
+                      data-testid="due-date"
                       name="dueDate"
                       render={({ field }) => (
                         <FormItem className="flex flex-col">
@@ -309,7 +316,7 @@ export function TaskModel({
                                   variant={"outline"}
                                   className={cn(
                                     "pl-3 text-left font-normal",
-                                    !field.value && "text-muted-foreground",
+                                    !field.value && "text-muted-foreground"
                                   )}
                                 >
                                   {field.value ? (
@@ -335,9 +342,7 @@ export function TaskModel({
                                 disabled={(date) =>
                                   date <=
                                   new Date(
-                                    new Date().setDate(
-                                      new Date().getDate() - 1,
-                                    ),
+                                    new Date().setDate(new Date().getDate() - 1)
                                   )
                                 }
                                 initialFocus
@@ -365,6 +370,7 @@ export function TaskModel({
                               {...field}
                               placeholder="Enter task description"
                               className="focus:!ring-primary"
+                              data-testid="description"
                             />
                           </div>
                         </FormControl>

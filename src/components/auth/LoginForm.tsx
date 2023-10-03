@@ -130,6 +130,7 @@ function LoginForm() {
                         placeholder="e.g pauldoe@gmail.com"
                         {...field}
                         className="focus:!ring-primary h-[3.125rem]"
+                        data-testid="email"
                       />
                     </div>
                   </FormControl>
@@ -152,6 +153,7 @@ function LoginForm() {
                         {...field}
                         className="pr-[4.5rem] focus:!ring-primary h-[3.125rem]"
                         type={!showPassword ? "password" : "text"}
+                        data-testid="password"
                       />
                       <div className="bg-[#D9D9D9] cursor-pointer absolute w-[3.6875rem] h-[2.375rem] rounded-[0.5rem] flex justify-center items-center font-bold top-[.35rem] right-1">
                         {showPassword ? (
@@ -176,6 +178,7 @@ function LoginForm() {
                 isSubmitable
                 width="w-full"
                 isLoading={loading}
+                data-testid="signin-cta"
               />
             </div>
           </form>
@@ -184,5 +187,6 @@ function LoginForm() {
     </div>
   );
 }
+
 
 export default LoginForm;

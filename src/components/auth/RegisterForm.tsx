@@ -138,6 +138,7 @@ function RegisterForm() {
                         placeholder="e.g Paul Doe"
                         {...field}
                         className=" focus:!ring-primary h-[3.125rem]"
+                        data-testid="fullname"
                       />
                     </div>
                   </FormControl>
@@ -158,6 +159,7 @@ function RegisterForm() {
                         placeholder="e.g pauldoe@gmail.com"
                         {...field}
                         className="focus:!ring-primary h-[3.125rem]"
+                        data-testid="email"
                       />
                     </div>
                   </FormControl>
@@ -179,6 +181,7 @@ function RegisterForm() {
                         {...field}
                         className="pr-[4.5rem] focus:!ring-primary h-[3.125rem]"
                         type={!showPassword ? "password" : "text"}
+                        data-testid="password"
                       />
                       <div className="bg-[#D9D9D9] cursor-pointer absolute w-[3.6875rem] h-[2.375rem] rounded-[0.5rem] flex justify-center items-center font-bold top-[.35rem] right-1">
                         {showPassword ? (
@@ -202,7 +205,7 @@ function RegisterForm() {
               )}
             />
 
-            <div className="text-[0.875rem]">
+            <div className="text-[0.875rem]" data-testid="infotext">
               By clicking the <b>Create Account</b> button below, you agree to
               the TaskMaster
               <span className="text-primary font-bold underline pl-2 pr-2">

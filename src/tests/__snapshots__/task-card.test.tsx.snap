@@ -1,0 +1,94 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TaskCard should match snapshots 1`] = `
+<section
+  className="rounded-[0.75rem] shadow-lg pl-[1.5rem] pr-[1rem] pt-[1.25rem] pb-[1.69rem]"
+>
+  <div
+    className="flex justify-between items-center"
+  >
+    <div>
+      <div
+        className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-[#24975633] hover:bg-[#24975633] text-[#219653]"
+        data-testid="category-badge"
+      >
+        <span
+          className=""
+        >
+          Fun
+        </span>
+      </div>
+    </div>
+    <div>
+      <button
+        aria-controls="radix-:r0:"
+        aria-expanded={false}
+        aria-haspopup="dialog"
+        data-state="closed"
+        onClick={[Function]}
+        type="button"
+      >
+        <img
+          alt="three dots for action"
+          src="/svgs/three_dot.svg"
+        />
+      </button>
+    </div>
+  </div>
+  <div
+    className="mt-[0.81rem] pr-2"
+    data-testid="title"
+  >
+    Smith
+  </div>
+  <div
+    className="mt-[0.81rem] pr-2 text-gray-500"
+    data-testid="description"
+  >
+    Edin Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum....
+  </div>
+  <div
+    className="flex gap-[2.5rem] mt-[0.81rem]"
+    data-testid="due-date"
+  >
+    <div
+      className="flex gap-2 items-center"
+    >
+      <img
+        alt="calendar icon"
+        className="w-4"
+        src="/svgs/calendar.svg"
+      />
+      <p
+        className="text-[#828282] text-[0.75rem]"
+      >
+        Due Date: 
+        Sun Dec 10 2023 01:00:00 GMT+0100 (West Africa Standard Time)
+      </p>
+    </div>
+    <div
+      data-testid="priority-badge"
+    >
+      <div
+        className="items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-[#ffa50033] hover:bg-[#ffa50033] text-black h-[1.437rem] !w-[150px] flex justify-center"
+      >
+        <span
+          className="text-[0.625rem]"
+        >
+          Medium
+           priority
+        </span>
+      </div>
+    </div>
+    <span
+      className="relative flex shrink-0 overflow-hidden rounded-full w-[1.5rem] h-[1.5rem]"
+    >
+      <span
+        className="flex h-full w-full items-center justify-center rounded-full bg-muted text-[.8rem]"
+      >
+        T
+      </span>
+    </span>
+  </div>
+</section>
+`;

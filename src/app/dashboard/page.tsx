@@ -76,10 +76,10 @@ function Dashboard() {
 
   return (
     <div className="pl-4 md:pl-[2.5rem] pr-1 md:pr-[2.5rem]">
-      <div className="text-[1.5rem] md:text-[1.6rem] font-[500] mt-2 mb-[1.88rem] ">
+      <div className="text-[1.5rem] md:text-[1.6rem] font-[500] mt-2 mb-[1.88rem]" data-testid="title">
         Task Dashboard
       </div>
-      <TopSection rerenderParentComp={handleInitialCall} />
+      <TopSection rerenderParentComp={handleInitialCall} data-testid="topsection" />
       <div className="min-h-[70vh] mt-[1.94rem]">
         {loading ? (
           [1, 2, 3].map((_, index) => (
@@ -110,7 +110,7 @@ function Dashboard() {
         <Separator />
       </div>
 
-      <div className="mt-[1.25rem]">
+      <div className="mt-[1.25rem]" data-testid="pagination" >
         <TMPagination
           onPageChange={handlePageChange}
           totalCount={tasks?.data?.pagination?.total_elements || 0}

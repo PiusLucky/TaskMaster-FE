@@ -1,0 +1,139 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Dashboard should match snapshots 1`] = `
+<div
+  className="pl-4 md:pl-[2.5rem] pr-1 md:pr-[2.5rem]"
+>
+  <div
+    className="text-[1.5rem] md:text-[1.6rem] font-[500] mt-2 mb-[1.88rem]"
+    data-testid="title"
+  >
+    Task Dashboard
+  </div>
+  <div>
+    <div
+      className="flex justify-between flex-col  gap-4 md:flex-row"
+    >
+      <div
+        className="flex-grow max-w-[500px]"
+      >
+        <div
+          className="relative"
+        >
+          <div>
+            <input
+              className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 pl-[2.5rem] focus:!ring-primary h-[3.125rem]"
+              onChange={[Function]}
+              placeholder="Search"
+            />
+            <div
+              className="cursor-pointer absolute w-[2.25rem] h-[1.25rem] rounded-[0.5rem] flex justify-center items-center font-bold top-[.8rem] left-1"
+            >
+              <img
+                alt="search icon"
+                src="/svgs/search.svg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="flex gap-4 md:gap-[3.19rem]"
+      >
+        <div>
+          <button
+            className="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 md:w-[245px] md:h-[56px] select-none w-[8.06rem] shadow-none !h-[3.37rem] rounded-[0.625rem] bg-white border border-[#000] text-[#000] hover:bg-white"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            <div
+              className="flex gap-2 items-center"
+            >
+              <img
+                alt="Button icon"
+                className="w-[1.375rem] h-[1.375rem]"
+                src="/svgs/filter.svg"
+              />
+              <span>
+                 
+              </span>
+              Filter
+            </div>
+          </button>
+        </div>
+        <div>
+          <button
+            className="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-primary text-white md:w-[245px] md:h-[56px] select-none w-[9.125rem] shadow-none !h-[3.37rem] rounded-[0.625rem]"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            <div
+              className="flex gap-2 items-center"
+            >
+              Add New Task
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="min-h-[70vh] mt-[1.94rem]"
+  >
+    <div
+      className="flex flex-col gap-4 mb-8"
+    >
+      <div
+        className="animate-pulse rounded-md bg-muted w-[5rem] h-4"
+      />
+      <div
+        className="animate-pulse rounded-md bg-muted w-full h-4"
+      />
+      <div
+        className="animate-pulse rounded-md bg-muted w-[10rem] h-4"
+      />
+    </div>
+    <div
+      className="flex flex-col gap-4 mb-8"
+    >
+      <div
+        className="animate-pulse rounded-md bg-muted w-[5rem] h-4"
+      />
+      <div
+        className="animate-pulse rounded-md bg-muted w-full h-4"
+      />
+      <div
+        className="animate-pulse rounded-md bg-muted w-[10rem] h-4"
+      />
+    </div>
+    <div
+      className="flex flex-col gap-4 mb-8"
+    >
+      <div
+        className="animate-pulse rounded-md bg-muted w-[5rem] h-4"
+      />
+      <div
+        className="animate-pulse rounded-md bg-muted w-full h-4"
+      />
+      <div
+        className="animate-pulse rounded-md bg-muted w-[10rem] h-4"
+      />
+    </div>
+  </div>
+  <div
+    className="mt-[8rem]"
+  >
+    <div
+      className="shrink-0 bg-border h-[1px] w-full"
+      data-orientation="horizontal"
+      role="none"
+    />
+  </div>
+  <div
+    className="mt-[1.25rem]"
+    data-testid="pagination"
+  />
+</div>
+`;

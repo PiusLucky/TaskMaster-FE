@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import TMButton from "../common/TMButton";
-import { TaskModel } from "../modals/TaskModal";
+import { TaskModal } from "../modals/TaskModal";
 import { debounce } from "lodash";
 import { TMEmitter } from "@/lib/eventEmitter";
 import { FilterTaskModal } from "../modals/FilterTaskModal";
@@ -33,7 +33,7 @@ function TopSection({
     const taskList = await apiClient.get<ITaskList>(
       apiResources.task,
       `/tasks`,
-      setError,
+      setError
     );
 
     const taskObj = {
@@ -78,7 +78,7 @@ function TopSection({
             <FilterTaskModal />
           </div>
           <div>
-            <TaskModel isCreate rerenderParentComp={rerenderParentComp} />
+            <TaskModal isCreate rerenderParentComp={rerenderParentComp} />
           </div>
         </div>
       </div>
