@@ -62,7 +62,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Nextjs (web framework for React) - Typescript
 - Jotai (state management)
 - Shadcn (no-component library)
-- Js-cookie (cookie store)
+- Js-cookie (cookie store, and cookie invalidation)
 
 
 ## Features
