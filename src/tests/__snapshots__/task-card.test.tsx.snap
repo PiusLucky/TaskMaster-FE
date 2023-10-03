@@ -48,7 +48,7 @@ exports[`TaskCard should match snapshots 1`] = `
     Edin Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum....
   </div>
   <div
-    className="flex gap-[2.5rem] mt-[0.81rem]"
+    className="flex gap-4 md:gap-[2.5rem] mt-[0.81rem] flex-col md:flex-row"
     data-testid="due-date"
   >
     <div

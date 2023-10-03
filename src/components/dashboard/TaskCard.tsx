@@ -75,7 +75,7 @@ function TaskCard({
       >
         {ellipisifyString(task.description, 300)}
       </div>
-      <div className="flex gap-[2.5rem] mt-[0.81rem]" data-testid="due-date">
+      <div className="flex gap-4 md:gap-[2.5rem] mt-[0.81rem] flex-col md:flex-row" data-testid="due-date">
         <div className="flex gap-2 items-center">
           <img src="/svgs/calendar.svg" alt="calendar icon" className="w-4" />
           <p className="text-[#828282] text-[0.75rem]">
