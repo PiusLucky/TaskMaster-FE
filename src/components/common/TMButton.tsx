@@ -13,6 +13,7 @@ type TMButtonProps = {
   variant?: "PRIMARY" | "SECONDARY";
   classes?: string;
   iconRoute?: string;
+  dataTestId?: string;
   showTextBeforeIcon?: boolean;
   iconComponent?: React.ReactElement;
 };
@@ -32,8 +33,9 @@ const TMButton = forwardRef<HTMLButtonElement, TMButtonProps>(
       iconRoute,
       iconComponent,
       showTextBeforeIcon,
+      dataTestId,
     },
-    ref,
+    ref
   ) => {
     const propWidth =
       width === "FULL_WIDTH" ? "w-full" : width ? width : "w-[245px]";
@@ -51,6 +53,7 @@ const TMButton = forwardRef<HTMLButtonElement, TMButtonProps>(
         type={isSubmitable ? "submit" : "button"}
         ref={ref}
         disabled={disabled}
+        data-testid={dataTestId}
       >
         {showTextBeforeIcon ? (
           <div className="flex gap-2 items-center">
@@ -94,7 +97,7 @@ const TMButton = forwardRef<HTMLButtonElement, TMButtonProps>(
         {dataLoadingText}
       </Button>
     );
-  },
+  }
 );
 
 // Assign a display name to your component

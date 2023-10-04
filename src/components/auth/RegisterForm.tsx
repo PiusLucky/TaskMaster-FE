@@ -81,7 +81,7 @@ function RegisterForm() {
           password,
         },
         setError,
-        setSuccess,
+        setSuccess
       );
 
       setTimeout(() => {
@@ -223,6 +223,7 @@ function RegisterForm() {
               isSubmitable
               width="w-full"
               isLoading={loading}
+              dataTestId="signup-cta"
             />
           </form>
         </Form>

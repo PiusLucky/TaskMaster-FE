@@ -178,7 +178,7 @@ function LoginForm() {
                 isSubmitable
                 width="w-full"
                 isLoading={loading}
-                data-testid="signin-cta"
+                dataTestId="signin-cta"
               />
             </div>
           </form>

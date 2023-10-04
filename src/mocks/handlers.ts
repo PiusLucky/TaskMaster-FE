@@ -1,9 +1,11 @@
 import { rest } from "msw";
-import { loginResolver } from "./resolvers";
-import apiResources from "@/api/resources";
+import { loginResolver, registerResolver, tasksResolver, userResolver } from "./resolvers";
 
-// Matches any "GET /user" requests,
-// and responds using the `responseResolver` function.
+const BASE_URL = "http://localhost:3000/*";
+
 export const handlers = [
-  rest.get(apiResources.user + "/users/login", loginResolver),
+  rest.post(BASE_URL + "/user/users/login", loginResolver),
+  rest.post(BASE_URL + "/user/users", registerResolver),
+  rest.get(BASE_URL + "/user/users", userResolver),
+  rest.get(BASE_URL + "/task/tasks", tasksResolver),
 ];
