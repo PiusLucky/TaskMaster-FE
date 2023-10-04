@@ -36,7 +36,7 @@ test("CTA action", async () => {
   const testEmail = "lucddkypiussdd5cx0@ss.com";
   const testPassword = "MyShelf019287";
 
-  // Set values for email and password fields
+  // Set values for fullName, email and password fields
   fireEvent.change(fullName, { target: { value: testFullName } });
   fireEvent.change(email, { target: { value: testEmail } });
   fireEvent.change(password, { target: { value: testPassword } });
