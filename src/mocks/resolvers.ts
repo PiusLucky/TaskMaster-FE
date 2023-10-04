@@ -24,7 +24,6 @@ export const tasksResolver = (_req: any, res: any, ctx: any) => {
 };
 
 export const createTaskResolver = (_req: any, res: any, ctx: any) => {
-  console.log(_req.body)
   return res(ctx.status(200), ctx.json(singleTaskJson));
 };
 
