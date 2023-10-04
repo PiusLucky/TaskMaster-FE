@@ -96,7 +96,7 @@ export function FilterTaskModal() {
       const taskList = await apiClient.get<ITaskList>(
         apiResources.task,
         `/tasks?${objectToUri(uriQuery)}`,
-        setError,
+        setError
       );
 
       if (taskList) {
@@ -234,7 +234,7 @@ export function FilterTaskModal() {
                                   variant={"outline"}
                                   className={cn(
                                     "pl-3 text-left font-normal",
-                                    !field.value && "text-muted-foreground",
+                                    !field.value && "text-muted-foreground"
                                   )}
                                 >
                                   {field.value ? (

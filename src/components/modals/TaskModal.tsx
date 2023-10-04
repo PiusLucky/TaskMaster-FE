@@ -171,18 +171,23 @@ export function TaskModal({
             text={"Add New Task"}
             classes="w-[9.125rem] shadow-none !h-[3.37rem] rounded-[0.625rem]"
             action={() => toggleOpenModal()}
+            dataTestId="task-modal-trigger"
           />
         ) : (
           <div
             className="flex gap-[0.4rem] cursor-pointer"
             onClick={() => toggleOpenModal()}
+            data-testid="update-task-modal-trigger"
           >
             <img src="/svgs/pencil.svg" alt="Pencil icon" />
             <p>Edit</p>
           </div>
         )}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[60rem] max-h-[500px] md:max-h-full overflow-y-auto pt-8">
+      <DialogContent
+        className="sm:max-w-[60rem] max-h-[500px] md:max-h-full overflow-y-auto pt-8"
+        data-testid="modal-content"
+      >
         <div>
           <p
             className="text-[#333] text-[1rem] font-[600] mb-[1.2rem]"
@@ -231,7 +236,10 @@ export function TaskModal({
                           defaultValue={field.value}
                           data-testid="category"
                         >
-                          <SelectTrigger className="focus:!ring-primary">
+                          <SelectTrigger
+                            className="focus:!ring-primary"
+                            aria-label="Category"
+                          >
                             <SelectValue placeholder="Select Category" />
                           </SelectTrigger>
 
@@ -273,7 +281,10 @@ export function TaskModal({
                               defaultValue={field.value}
                               data-testid="priority"
                             >
-                              <SelectTrigger className="focus:!ring-primary">
+                              <SelectTrigger
+                                className="focus:!ring-primary"
+                                aria-label="Priority"
+                              >
                                 <SelectValue placeholder="Select Priority" />
                               </SelectTrigger>
 
@@ -385,6 +396,7 @@ export function TaskModal({
                   isSubmitable
                   width="w-full"
                   isLoading={actionButtonLoading}
+                  dataTestId="submit"
                 />
               </form>
             </Form>

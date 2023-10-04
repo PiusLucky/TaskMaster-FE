@@ -9,6 +9,7 @@ import { UserData } from "@/types/global-types";
 import { hasInputValue } from "./utils";
 
 //NOTE USE THIS TO DEBUG -  screen.debug();
+//NOTE USE THIS TO DEBUG -  DEBUG_PRINT_LIMIT=100000 yarn test
 
 test("Email and password fields should render", async () => {
   const { getByTestId } = render(<LoginForm />);
