@@ -61,7 +61,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Stack
 - Next.js 13 (web framework for React) - Typescript
 - Jotai (state management)
-- Shadcn (no-component library)
+- Shadcn (non-component ui library)
+- MSW (API mock)
 - Js-cookie (cookie store, and cookie invalidation)
 
 
