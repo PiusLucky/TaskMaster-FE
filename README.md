@@ -59,10 +59,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 
 ## Stack
-- Nextjs (web framework for React) - Typescript
+- Next.js 13 (web framework for React) - Typescript
 - Jotai (state management)
 - Shadcn (no-component library)
-- Js-cookie (cookie store)
+- Js-cookie (cookie store, and cookie invalidation)
 
 
 ## Features
@@ -76,4 +76,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Token revocation and security measures.
 - Comprehensive task management.
 
-Feel free to explore the backend and integrate it with the frontend to use TaskMaster's full functionality!
+Feel free to explore TaskMaster's full functionality!
