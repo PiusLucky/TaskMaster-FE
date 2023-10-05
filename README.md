@@ -62,6 +62,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Next.js 13 (web framework for React) - Typescript
 - Jotai (state management)
 - Shadcn (non-component ui library)
+- Vitest
 - MSW (API mock)
 - Js-cookie (cookie store, and cookie invalidation)
 
