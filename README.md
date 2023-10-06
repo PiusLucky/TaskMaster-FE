@@ -6,6 +6,9 @@
 
 TaskMaster Frontend is the client interfacing the TaskMaster project, responsible for user authentication and  managing tasks.
 
+![image](https://github.com/PiusLucky/TaskMaster-FE/assets/32282934/3254d1b6-5796-4e8c-b3ff-cad5c60351e0)
+
+
 ## Deployed Version
 `Frontend Server`: https://task-master-rgf1b5u8p-betacare.vercel.app/auth/login
 
